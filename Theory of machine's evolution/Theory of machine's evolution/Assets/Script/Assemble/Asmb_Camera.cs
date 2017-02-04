@@ -3,71 +3,71 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Asmb_Camera : MonoBehaviour {
-    public GameObject body;
-    public GameObject sphere;
-
+    // mouse position for last frame
     private float xl, yl;
+    // mouse button is down
     private int type = 0;
 
-    private float ynum = 0.0f;
-    private float maxDegree = 0.5f;
-    private float minDegree = -1.2f;
+    private float m_rotateSpeed = 0.5f;
+    private float m_yDegree = 0.0f;
+    // y degree range
+    private float maxDegree = 60f;
+    private float minDegree = -60f;
 
-    public float hua = 0.0f;
-    private float maxDistance = 2.0f;
-    private float minDistance = -0.4f;
+    // camera's scale
+    private float m_scale = 1.0f;
+    private float m_scaleSpeed = 0.5f;
+    private float maxScale = 3.0f;
+    private float minScale = 0.5f;
 
     // Use this for initialization
     void Start() {
-    }
-
-    public void setBody(GameObject obj) {
-        body = obj;
-        transform.LookAt(body.transform.position);
+        m_yDegree = this.transform.rotation.eulerAngles.x;
     }
 
     // Update is called once per frame
     void Update() {
-        if (body != null && Input.GetMouseButton(1)) {
+        if (Input.GetMouseButton(1)) {
+            // first down
             if (type == 0) {
                 type = 1;
                 xl = Input.mousePosition.x;
                 yl = Input.mousePosition.y;
             }
             else
-                mRotate();
+                SphereRotate();
         }
         else {
             type = 0;
         }
-        mTransform();
-
+        SphereScale();
     }
 
-    void mTransform() {
-        float tmp = Input.GetAxis("Mouse ScrollWheel");
+    void SphereScale() {
+        float tmp = - m_scaleSpeed * Input.GetAxis("Mouse ScrollWheel");
         if (tmp != 0.0f) {
-            if (hua + tmp > minDistance && hua + tmp < maxDistance) {
-                hua += tmp;
-                transform.Translate(new Vector3(0.0f, 0.0f, tmp * 3.0f));
+            if (m_scale + tmp > minScale && m_scale + tmp < maxScale) {
+                m_scale += tmp;
+                this.transform.localScale = m_scale * Vector3.one;
             }
         }
     }
 
-    void mRotate() {
+    void SphereRotate() {
         float x = Input.mousePosition.x;
         float y = Input.mousePosition.y;
-        float dx = xl - x;
-        float dy = yl - y;
+        float dx = m_rotateSpeed * (xl - x);
+        float dy = m_rotateSpeed * (yl - y);
         xl = x;
         yl = y;
 
-        sphere.transform.RotateAround(new Vector3(0.0f, 1.0f, 0.0f), -dx / 100.0f);
+        // rotate around Y
+        this.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), -dx, Space.World);
 
-        if (ynum + dy / 100.0f >= minDegree && ynum + dy / 100.0f < maxDegree) {
-            ynum += dy / 100.0f;
-            sphere.transform.RotateAround(sphere.transform.right, dy / 100.0f);
+        // rotate around X
+        if (m_yDegree + dy >= minDegree && m_yDegree + dy < maxDegree) {
+            m_yDegree += dy;
+            this.transform.Rotate(new Vector3(1.0f, 0.0f, 0.0f), dy);
         }
-        transform.LookAt(body.transform.position);
     }
 }
