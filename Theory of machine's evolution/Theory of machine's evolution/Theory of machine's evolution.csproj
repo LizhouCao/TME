@@ -88,7 +88,9 @@
     <Compile Include="Assets\Script\Assemble\Asmb_Camera.cs" />
     <Compile Include="Assets\Script\Assemble\Asmb_Component.cs" />
     <Compile Include="Assets\Script\Assemble\Asmb_SceneCtrl.cs" />
+    <Compile Include="Assets\Script\Assemble\Asmb_UI.cs" />
     <Compile Include="Assets\Script\Assemble\BoundingBox_Plane.cs" />
+    <Compile Include="Assets\Script\Assemble\Component_Button.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />

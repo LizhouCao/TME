@@ -26,7 +26,7 @@ public class Asmb_Builder : MonoBehaviour {
         AddComponents(heart, 0, 0, 0);
     }
 
-    public void SetCurrentPrefab(GameObject _obj) {
+    private void SetCurrentPrefab(GameObject _obj) {
         m_prefabCurrent = _obj;
     }
 
@@ -35,11 +35,13 @@ public class Asmb_Builder : MonoBehaviour {
         AddComponents(obj, _x, _y, _z);
     }
 
-    void AddComponents(GameObject _obj, int _x, int _y, int _z) {
+    private void AddComponents(GameObject _obj, int _x, int _y, int _z) {
         _obj.GetComponent<Asmb_Component>().SetPosition(_x, _y, _z);
         componentMap[_x + x_length / 2, _y + y_length / 2, _z + z_length / 2] = _obj;
     }
 	
+    public void 
+
 	// Update is called once per frame
 	void Update () {
 		
