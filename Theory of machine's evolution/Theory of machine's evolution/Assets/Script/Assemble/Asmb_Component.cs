@@ -22,27 +22,31 @@ public class Asmb_Component : MonoBehaviour {
 		
 	}
 
-    public void BuildOn(string _planeName) {
+    public void ShowTmpObj(string _planeName, bool _buildAble) {
         int b_x = x;
         int b_y = y;
         int b_z = z;
 
-        switch (_planeName){
+        switch (_planeName) {
             case "Up":
-                b_y += 1;  break;
+                b_y += 1; break;
             case "Bottom":
-                b_y -= 1;  break;
+                b_y -= 1; break;
             case "Left":
-                b_x -= 1;  break;
+                b_x -= 1; break;
             case "Right":
-                b_x += 1;  break;
+                b_x += 1; break;
             case "Front":
-                b_z += 1;  break;
+                b_z += 1; break;
             case "Back":
-                b_z -= 1;  break;
+                b_z -= 1; break;
         }
 
         // ask builder to build on b_x, b_y, b_z;
-        Asmb_SceneCtrl.context.m_builder.BuildOn(b_x, b_y, b_z);
+        Asmb_SceneCtrl.context.Builder.ShowTmpObj(b_x, b_y, b_z, _buildAble);
+    }
+
+    public void HideTmpObj() {
+        Asmb_SceneCtrl.context.Builder.HideTmpObj();
     }
 }

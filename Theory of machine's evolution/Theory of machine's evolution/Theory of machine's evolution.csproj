@@ -87,10 +87,13 @@
     <Compile Include="Assets\Script\Assemble\Asmb_Builder.cs" />
     <Compile Include="Assets\Script\Assemble\Asmb_Camera.cs" />
     <Compile Include="Assets\Script\Assemble\Asmb_Component.cs" />
+    <Compile Include="Assets\Script\Assemble\Asmb_Component_Data.cs" />
     <Compile Include="Assets\Script\Assemble\Asmb_SceneCtrl.cs" />
     <Compile Include="Assets\Script\Assemble\Asmb_UI.cs" />
     <Compile Include="Assets\Script\Assemble\BoundingBox_Plane.cs" />
     <Compile Include="Assets\Script\Assemble\Component_Button.cs" />
+    <Compile Include="Assets\Script\Assemble\Follow_UI.cs" />
+    <Compile Include="Assets\Script\Assemble\Tmp_Component.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />

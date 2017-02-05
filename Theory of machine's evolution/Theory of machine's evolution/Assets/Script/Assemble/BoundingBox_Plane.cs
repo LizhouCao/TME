@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BoundingBox_Plane : MonoBehaviour {
-    private Color color_Yes = new Color(0.1f, 0.5f, 0.1f, 0.3f);
-    private Color color_No = new Color(0.5f, 0.1f, 0.1f, 0.3f);
+    public static Color color_Yes = new Color(0.1f, 0.5f, 0.1f, 0.3f);
+    public static Color color_No = new Color(0.5f, 0.1f, 0.1f, 0.3f);
     private Color color_Normal;
 
     private bool isIn = false;
 
     private Asmb_Component m_parent;
+
+    public bool buildAble = true;
 
     private void Awake() {
         m_parent = this.transform.parent.parent.GetComponent<Asmb_Component>();
@@ -24,13 +26,18 @@ public class BoundingBox_Plane : MonoBehaviour {
     }
 
     void PointerEnter() {
-        this.GetComponent<Renderer>().material.color = color_Yes;
+        if (buildAble)
+            this.GetComponent<Renderer>().material.color = color_Yes;
+        else
+            this.GetComponent<Renderer>().material.color = color_No;
         isIn = true;
+        m_parent.ShowTmpObj(this.name, buildAble);
     }
 
     void PointerExit() {
         this.GetComponent<Renderer>().material.color = color_Normal;
         isIn = false;
+        m_parent.HideTmpObj();
     }
 
     // Use this for initialization
@@ -40,8 +47,6 @@ public class BoundingBox_Plane : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (isIn && Input.GetMouseButtonDown(0)) {
-            m_parent.BuildOn(this.gameObject.name);
-        }
+
 	}
 }

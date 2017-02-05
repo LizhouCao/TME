@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Component_Button : MonoBehaviour {
+    public int id;
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +16,7 @@ public class Component_Button : MonoBehaviour {
 	}
 
     public void PointerEnter() {
-        print("enter " + gameObject.name);
+        
     }
 
     public void PointerExit() {
@@ -23,6 +24,8 @@ public class Component_Button : MonoBehaviour {
     }
 
     public void PoinertDown() {
-        print("down ");
+        print("hahahah");
+        if (Asmb_SceneCtrl.context.UI.IsWorking)
+            Asmb_SceneCtrl.context.UI.ComponentSelected(id);
     }
 }
