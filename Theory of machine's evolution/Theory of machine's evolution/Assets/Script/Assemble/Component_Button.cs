@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Component_Button : MonoBehaviour {
     public int id;
@@ -24,8 +25,11 @@ public class Component_Button : MonoBehaviour {
     }
 
     public void PoinertDown() {
-        print("hahahah");
         if (Asmb_SceneCtrl.context.UI.IsWorking)
             Asmb_SceneCtrl.context.UI.ComponentSelected(id);
+    }
+
+    public void SetName(string _name) {
+        this.transform.FindChild("Text").GetComponent<Text>().text = _name;
     }
 }

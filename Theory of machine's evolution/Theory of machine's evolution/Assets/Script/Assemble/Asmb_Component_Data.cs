@@ -7,6 +7,8 @@ public class Asmb_Component_Data : MonoBehaviour {
     // public 
     public Asmb_Component prefab;
     public Tmp_Component tmp_prefab;
+    public string c_name;
+    public string descrip;
 
 	// Use this for initialization
 	void Start () {

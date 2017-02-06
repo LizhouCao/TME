@@ -11,6 +11,10 @@ public class Follow_UI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        RefreshPosition();
+    }
+
+    public void RefreshPosition() {
         this.GetComponent<RectTransform>().position = Input.mousePosition;
-	}
+    }
 }

@@ -44,10 +44,11 @@ public class Asmb_Builder : MonoBehaviour {
         }
     }
 
-    public void ShowTmpObj(int _x, int _y, int _z, bool _buildAble) {
+    public void ShowTmpObj(int _x, int _y, int _z, bool _buildAble, string _direct) {
         if (IsWorking) {
             m_tmpComponent.SetPosition(_x, _y, _z);
             m_tmpComponent.SetAble(_buildAble);
+            m_tmpComponent.SetDirection(_direct);
             m_tx = _x; m_ty = _y; m_tz = _z;
             m_tmpComponent.gameObject.SetActive(true);
             FollowUIObj.SetActive(false);
@@ -58,11 +59,16 @@ public class Asmb_Builder : MonoBehaviour {
         if (IsWorking) {
             m_tmpComponent.gameObject.SetActive(false);
             FollowUIObj.SetActive(true);
+            FollowUIObj.GetComponent<Follow_UI>().RefreshPosition();
         }
     }
 
     private void AddComponents(GameObject _obj, int _x, int _y, int _z) {
         _obj.GetComponent<Asmb_Component>().SetPosition(_x, _y, _z);
+        if (m_tmpComponent != null) {
+            _obj.GetComponent<Asmb_Component>().SetDirection(m_tmpComponent.Direct);
+        }
+
         componentMap[_x + x_length / 2, _y + y_length / 2, _z + z_length / 2] = _obj;
     }
 	
