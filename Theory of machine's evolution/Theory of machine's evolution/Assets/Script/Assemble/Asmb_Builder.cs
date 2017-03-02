@@ -39,6 +39,7 @@ public class Asmb_Builder : MonoBehaviour {
     public void BuildOn(int _x, int _y, int _z) {
         if (IsWorking) {
             GameObject obj = Instantiate(Asmb_SceneCtrl.context.GetPrefabFromID(m_currentId));
+            obj.transform.SetParent(this.transform);
             this.AddComponents(obj, _x, _y, _z);
             this.StopBuilder();    
         }

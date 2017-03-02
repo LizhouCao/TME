@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Asmb_SceneCtrl : MonoBehaviour {
     // context
@@ -90,5 +91,9 @@ public class Asmb_SceneCtrl : MonoBehaviour {
             m_ui.ResumeWorking();
             m_state = Asmb_State.WAIT;
         }
+    }
+
+    public void NextScene() {
+        SceneManager.LoadScene("Game");
     }
 }
